@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Audio Player</title>
+        <style>
+            .slider {
+                -webkit-appearance: none;
+                width: 200px;
+                height: 15px;
+                background: #d3d3d3;
+                outline: none;
+            }
+
+            .slider:hover {
+                background: #aaa;
+            }
+
+            .slider::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                background: #4CAF50;
+                cursor: pointer;
+            }
+
+            .slider::-moz-range-thumb {
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                background: #4CAF50;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Audio Player mit Javascript</h1>
+        <div class="slidecontainer">
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+        </div>
+        <script>
+
+        </script>
+
+    </body>
+
+</html>
