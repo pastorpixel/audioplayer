@@ -43,11 +43,13 @@
         <div class="slidecontainer">
             <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
             <input type="button" id="startButton" value="Play">
+            <input type="button" name="button" id="pauseButton" value="pause">
         </div>
         <script>
             let audio1 = new Audio( 'ausflug.mp3' );
             let posSlider = document.getElementById( "myRange" );
             let startBut = document.getElementById( "startButton" );
+            let pauseBut = document.getElementById( "pauseButton" );
 
             audio1.addEventListener( "loadedmetadata", setSliderMax );
 
@@ -61,6 +63,13 @@
             function audioPlay ()
             {
                 audio1.play();
+            }
+
+            pauseBut.addEventListener( "click", audioPause );
+
+            function audioPause ()
+            {
+                audio1.pause();
             }
 
             audio1.addEventListener( "timeupdate", setSliderVal );
