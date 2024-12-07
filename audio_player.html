@@ -41,15 +41,17 @@
     <body>
         <h1>Audio Player mit Javascript</h1>
         <div class="slidecontainer">
-            <input type="range" min="1" max="100" value="50" class="slider" id="myRange" value="0">
+            <input type="range" min="1" max="100" value="1" class="slider" id="myRange">
             <input type="button" id="startButton" value="Play">
             <input type="button" name="button" id="pauseButton" value="pause">
+            <input type="range" min="0" max="100" value="100" class="slider" id="myVol">
         </div>
         <script>
             let audio1 = new Audio( 'ausflug.mp3' );
             let posSlider = document.getElementById( "myRange" );
             let startBut = document.getElementById( "startButton" );
             let pauseBut = document.getElementById( "pauseButton" );
+            let volSlider = document.getElementById( "myVol" );
 
             audio1.addEventListener( "loadedmetadata", setSliderMax );
 
@@ -85,6 +87,13 @@
             function setPos ()
             {
                 audio1.currentTime = posSlider.value;
+            }
+
+            volSlider.addEventListener( "input", setVol );
+
+            function setVol ()
+            {
+                audio1.volume = volSlider.value / 100;
             }
         </script>
 
