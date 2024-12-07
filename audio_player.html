@@ -90,7 +90,7 @@
                 }
             }
 
-
+            audio1.addEventListener( "timeupdate", setSliderVal );
             function setSliderVal ()
             {
                 posSlider.value = audio1.currentTime;
