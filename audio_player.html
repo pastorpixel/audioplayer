@@ -41,7 +41,7 @@
     <body>
         <h1>Audio Player mit Javascript</h1>
         <div class="slidecontainer">
-            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange" value="0">
             <input type="button" id="startButton" value="Play">
             <input type="button" name="button" id="pauseButton" value="pause">
         </div>
@@ -56,6 +56,7 @@
             function setSliderMax ()
             {
                 posSlider.setAttribute( 'max', audio1.duration );
+                posSlider.setAttribute( 'min', 0 );
             }
 
             startBut.addEventListener( "click", audioPlay );
@@ -63,6 +64,7 @@
             function audioPlay ()
             {
                 audio1.play();
+                audio1.addEventListener( "timeupdate", setSliderVal );
             }
 
             pauseBut.addEventListener( "click", audioPause );
@@ -72,12 +74,17 @@
                 audio1.pause();
             }
 
-            audio1.addEventListener( "timeupdate", setSliderVal );
-
 
             function setSliderVal ()
             {
                 posSlider.value = audio1.currentTime;
+            }
+
+            posSlider.addEventListener( "input", setPos );
+
+            function setPos ()
+            {
+                audio1.currentTime = posSlider.value;
             }
         </script>
 
