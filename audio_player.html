@@ -6,6 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Audio Player</title>
         <style>
+            .slidecontainer {
+                width: 450px;
+                height: 40px;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                background-color: #514F6B;
+            }
+
             .slider {
                 -webkit-appearance: none;
                 width: 200px;
@@ -14,8 +23,8 @@
                 outline: none;
             }
 
-            .slider:hover {
-                background: #aaa;
+            .slider::-webkit-slider-thumb:hover {
+                background: #828181;
             }
 
             .slider::-webkit-slider-thumb {
@@ -24,7 +33,7 @@
                 width: 25px;
                 height: 25px;
                 border-radius: 50%;
-                background: #4CAF50;
+                background: #434343;
                 cursor: pointer;
             }
 
@@ -32,8 +41,12 @@
                 width: 25px;
                 height: 25px;
                 border-radius: 50%;
-                background: #4CAF50;
+                background: #434343;
                 cursor: pointer;
+            }
+
+            #myVol {
+                width: 100px;
             }
         </style>
     </head>
@@ -41,17 +54,18 @@
     <body>
         <h1>Audio Player mit Javascript</h1>
         <div class="slidecontainer">
+            <img src="img/play.png" width="33" height="34" alt="play pause" id="goButton" />
             <input type="range" min="1" max="100" value="1" class="slider" id="myRange">
-            <input type="button" id="startButton" value="Play">
-            <input type="button" name="button" id="pauseButton" value="pause">
+            <img src="img/soundOff.png" width="18" height="19" alt="sound" />
             <input type="range" min="0" max="100" value="100" class="slider" id="myVol">
         </div>
         <script>
             let audio1 = new Audio( 'ausflug.mp3' );
             let posSlider = document.getElementById( "myRange" );
-            let startBut = document.getElementById( "startButton" );
-            let pauseBut = document.getElementById( "pauseButton" );
             let volSlider = document.getElementById( "myVol" );
+            let goBut = document.getElementById( "goButton" );
+            let playPic = "img/play.png";
+            let pausePic = "img/pause.png";
 
             audio1.addEventListener( "loadedmetadata", setSliderMax );
 
@@ -61,19 +75,19 @@
                 posSlider.setAttribute( 'min', 0 );
             }
 
-            startBut.addEventListener( "click", audioPlay );
+            goBut.addEventListener( "click", audioPlayPause );
 
-            function audioPlay ()
+            function audioPlayPause ()
             {
-                audio1.play();
-                audio1.addEventListener( "timeupdate", setSliderVal );
-            }
-
-            pauseBut.addEventListener( "click", audioPause );
-
-            function audioPause ()
-            {
-                audio1.pause();
+                if ( audio1.paused )
+                {
+                    audio1.play();
+                    goBut.src = pausePic;
+                } else
+                {
+                    audio1.pause();
+                    goBut.src = playPic;
+                }
             }
 
 
