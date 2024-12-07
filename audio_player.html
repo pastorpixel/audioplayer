@@ -42,10 +42,19 @@
         <h1>Audio Player mit Javascript</h1>
         <div class="slidecontainer">
             <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+
         </div>
         <script>
             let audio1 = new Audio( 'ausflug.mp3' );
-            audio1.addEventListener( "loadedmetadata", function () { console.log( this.duration ) } );
+            let posSlider = document.getElementById( "myRange" );
+
+
+            audio1.addEventListener( "loadedmetadata", setSliderMax );
+
+            function setSliderMax ()
+            {
+                posSlider.setAttribute( 'max', audio1.duration );
+            }
         </script>
 
     </body>
